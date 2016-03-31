@@ -177,6 +177,9 @@
 <span id="134">134</span>
 <span id="135">135</span>
 <span id="136">136</span>
+<span id="137">137</span>
+<span id="138">138</span>
+<span id="139">139</span>
 </pre><pre class='rust '>
 <span class='doccomment'>//! The client module exposes the `PTClient` struct which is the main interface to use, and</span>
 <span class='doccomment'>//! contains all methods necessary to make calls to the API.</span>
@@ -246,7 +249,10 @@
 <span class='doccomment'>/// use passivetotal::config::read_config;</span>
 <span class='doccomment'>/// use passivetotal::client::PTClient;</span>
 <span class='doccomment'>///</span>
-<span class='doccomment'>/// let conf = try!(read_config());</span>
+<span class='doccomment'>/// let conf = match read_config() {</span>
+<span class='doccomment'>///     Ok(conf) =&gt; conf,</span>
+<span class='doccomment'>///     _ =&gt; panic!(&quot;Please create your config at ~/.config/api_config.json&quot;),</span>
+<span class='doccomment'>/// }</span>
 <span class='doccomment'>/// let client = PTClient::new(conf);</span>
 <span class='doccomment'>/// let response = match client.get_pdns(&quot;passivetotal.org&quot;) {</span>
 <span class='doccomment'>///     Ok(response) =&gt; response,</span>

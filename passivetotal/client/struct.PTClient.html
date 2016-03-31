@@ -66,7 +66,10 @@ argument.</p>
 <span class='kw'>use</span> <span class='ident'>passivetotal</span>::<span class='ident'>config</span>::<span class='ident'>read_config</span>;
 <span class='kw'>use</span> <span class='ident'>passivetotal</span>::<span class='ident'>client</span>::<span class='ident'>PTClient</span>;
 
-<span class='kw'>let</span> <span class='ident'>conf</span> <span class='op'>=</span> <span class='macro'>try</span><span class='macro'>!</span>(<span class='ident'>read_config</span>());
+<span class='kw'>let</span> <span class='ident'>conf</span> <span class='op'>=</span> <span class='kw'>match</span> <span class='ident'>read_config</span>() {
+    <span class='prelude-val'>Ok</span>(<span class='ident'>conf</span>) <span class='op'>=&gt;</span> <span class='ident'>conf</span>,
+    _ <span class='op'>=&gt;</span> <span class='macro'>panic</span><span class='macro'>!</span>(<span class='string'>&quot;Please create your config at ~/.config/api_config.json&quot;</span>),
+}
 <span class='kw'>let</span> <span class='ident'>client</span> <span class='op'>=</span> <span class='ident'>PTClient</span>::<span class='ident'>new</span>(<span class='ident'>conf</span>);
 <span class='kw'>let</span> <span class='ident'>response</span> <span class='op'>=</span> <span class='kw'>match</span> <span class='ident'>client</span>.<span class='ident'>get_pdns</span>(<span class='string'>&quot;passivetotal.org&quot;</span>) {
     <span class='prelude-val'>Ok</span>(<span class='ident'>response</span>) <span class='op'>=&gt;</span> <span class='ident'>response</span>,
