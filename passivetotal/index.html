@@ -46,11 +46,13 @@
             <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                 [<span class='inner'>&#x2212;</span>]
             </a>
-        </span><a id='src-0' class='srclink' href='../src/passivetotal/lib.rs.html#1-34' title='goto source code'>[src]</a></span></h1>
+        </span><a id='src-0' class='srclink' href='../src/passivetotal/lib.rs.html#1-40' title='goto source code'>[src]</a></span></h1>
 <div class='docblock'><p>This is the Rust implementation of a client for the PassiveTotal API.
 Usage is provided through <code>passivetotal::client::PTClient</code></p>
 
 <p>Please see the <a href="./client/struct.PTClient.html"><code>passivetotal::client::PTClient</code> documentation</a> for the available methods.</p>
+
+<p>See the [response module documentation] for the specification for the response structs.</p>
 
 <p>See the <a href="https://api.passivetotal.org/api/docs/">API documentation</a> for more resources.</p>
 
@@ -60,7 +62,10 @@ Usage is provided through <code>passivetotal::client::PTClient</code></p>
 
 <span class='kw'>let</span> <span class='ident'>conf</span> <span class='op'>=</span> <span class='macro'>try</span><span class='macro'>!</span>(<span class='ident'>read_config</span>());
 <span class='kw'>let</span> <span class='ident'>client</span> <span class='op'>=</span> <span class='ident'>PTClient</span>::<span class='ident'>new</span>(<span class='ident'>conf</span>);
-<span class='kw'>let</span> <span class='ident'>response</span> <span class='op'>=</span> <span class='ident'>client</span>.<span class='ident'>get_pdns</span>(<span class='string'>&quot;passivetotal.org&quot;</span>);</pre>
+<span class='kw'>let</span> <span class='ident'>response</span> <span class='op'>=</span> <span class='kw'>match</span> <span class='ident'>client</span>.<span class='ident'>get_pdns</span>(<span class='string'>&quot;passivetotal.org&quot;</span>) {
+    <span class='prelude-val'>Ok</span>(<span class='ident'>response</span>) <span class='op'>=&gt;</span> <span class='ident'>response</span>,
+    _ <span class='op'>=&gt;</span> <span class='macro'>panic</span><span class='macro'>!</span>(<span class='string'>&quot;Something bad happened in the JSON response&quot;</span>),
+};</pre>
 </div><h2 id='modules' class='section-header'><a href="#modules">Modules</a></h2>
 <table>
                     <tr class=' module-item'>
@@ -86,9 +91,7 @@ contains all methods necessary to make calls to the API.</p>
                         <td><a class='mod' href='constants/index.html'
                                title='passivetotal::constants'>constants</a></td>
                         <td class='docblock short'>
-                             <p>Warning: incomplete
-This is a draft of the constants that you can match against with certain values given inside
-responses.</p>
+                             <p>Warning: incomplete</p>
 
                         </td>
                     </tr>

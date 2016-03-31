@@ -75,6 +75,12 @@
 <span id="32">32</span>
 <span id="33">33</span>
 <span id="34">34</span>
+<span id="35">35</span>
+<span id="36">36</span>
+<span id="37">37</span>
+<span id="38">38</span>
+<span id="39">39</span>
+<span id="40">40</span>
 </pre><pre class='rust '>
 <span class='attribute'>#<span class='op'>!</span>[<span class='ident'>allow</span>(<span class='ident'>non_snake_case</span>)]</span>
 <span class='attribute'>#<span class='op'>!</span>[<span class='ident'>doc</span>(<span class='ident'>html_logo_url</span> <span class='op'>=</span> <span class='string'>&quot;https://s3-us-west-1.amazonaws.com/passivetotal-website/public/core-pt-logo-sm.png&quot;</span>,
@@ -87,6 +93,8 @@
 <span class='doccomment'>//!</span>
 <span class='doccomment'>//! Please see the [`passivetotal::client::PTClient` documentation][2] for the available methods.</span>
 <span class='doccomment'>//!</span>
+<span class='doccomment'>//! See the [response module documentation] for the specification for the response structs.</span>
+<span class='doccomment'>//!</span>
 <span class='doccomment'>//! See the [API documentation][1] for more resources.</span>
 <span class='doccomment'>//!</span>
 <span class='doccomment'>//! # Examples</span>
@@ -96,11 +104,15 @@
 <span class='doccomment'>//!</span>
 <span class='doccomment'>//! let conf = try!(read_config());</span>
 <span class='doccomment'>//! let client = PTClient::new(conf);</span>
-<span class='doccomment'>//! let response = client.get_pdns(&quot;passivetotal.org&quot;);</span>
+<span class='doccomment'>//! let response = match client.get_pdns(&quot;passivetotal.org&quot;) {</span>
+<span class='doccomment'>//!     Ok(response) =&gt; response,</span>
+<span class='doccomment'>//!     _ =&gt; panic!(&quot;Something bad happened in the JSON response&quot;),</span>
+<span class='doccomment'>//! };</span>
 <span class='doccomment'>//! ```</span>
 <span class='doccomment'>//!</span>
 <span class='doccomment'>//! [1]: https://api.passivetotal.org/api/docs/</span>
 <span class='doccomment'>//! [2]: ./client/struct.PTClient.html</span>
+<span class='doccomment'>//! [3]: ./response/index.html</span>
 
 <span class='kw'>extern</span> <span class='kw'>crate</span> <span class='ident'>rustc_serialize</span>;
 <span class='kw'>extern</span> <span class='kw'>crate</span> <span class='ident'>hyper</span>;
